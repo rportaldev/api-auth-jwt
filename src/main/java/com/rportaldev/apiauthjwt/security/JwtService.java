@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.rportaldev.apiauthjwt.entity.Usuario;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -46,10 +48,10 @@ public class JwtService {
     }
     
 
-    public String generarToken(UserDetails userDetails) {
+    public String generarToken(Usuario usuario) {
 
         return Jwts.builder()
-                .subject(userDetails.getUsername())
+                .subject(usuario.getCorreo())
                 .issuedAt(new Date())
                 .expiration(
                         new Date(
