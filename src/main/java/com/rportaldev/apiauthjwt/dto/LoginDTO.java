@@ -2,7 +2,6 @@ package com.rportaldev.apiauthjwt.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +19,5 @@ public class LoginDTO {
 	private String correo;
 	
 	@NotBlank(message = "El password es obligatorio")
-	@Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
 	private String password;
 }
