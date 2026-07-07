@@ -1,6 +1,5 @@
 package com.rportaldev.apiauthjwt.service;
 
-import java.time.LocalDateTime;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.rportaldev.apiauthjwt.entity.Usuario;
 import com.rportaldev.apiauthjwt.enums.Rol;
 import com.rportaldev.apiauthjwt.exception.CorreoYaExisteException;
+import com.rportaldev.apiauthjwt.exception.RecursoNoEncontradoException;
 import com.rportaldev.apiauthjwt.repository.UsuarioRepository;
 import com.rportaldev.apiauthjwt.security.JwtService;
 import com.rportaldev.apiauthjwt.dto.AuthResponseDTO;
@@ -63,7 +63,8 @@ public class AuthService {
 						dto.getPassword()));
 
 		Usuario usuario = usuarioRepository.findByCorreo(dto.getCorreo())
-				.orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+				.orElseThrow(() -> new RecursoNoEncontradoException(
+						"Usuario no encontrado con correo: " + dto.getCorreo()));
 
 		String token = jwtService.generarToken(usuario);
 
