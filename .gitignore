@@ -56,3 +56,4 @@ build/
 # virtual machine crash logs
 hs_err_pid*
 replay_pid*
+src/main/resources/application.properties
